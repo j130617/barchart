@@ -6,10 +6,6 @@
 		<script type="text/javascript" src="//d3js.org/d3.v4.min.js"></script>
 		<style type="text/css">
 
-			rect:hover {
-				fill: orange;
-			}
-
 		</style>
 	</head>
 	<body>
@@ -54,8 +50,9 @@
 			   .attr("fill", function(d) {
 					return "rgb(0, 0, " + Math.round(d * 10) + ")";
 			   })
-			   .on("click", function(d) {
-			   		console.log(d);
+			   .on("mouseover", function() {
+			   		d3.select(this)
+			   			.attr("fill", "orange");
 			   });
 			//Create labels
 			svg.selectAll("text")
