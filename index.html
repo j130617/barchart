@@ -88,8 +88,9 @@ d3.csv("data.csv", function(error, data) {
   svg.append("g")
       .attr("class", "axis")
       .call(d3.axisLeft(y));
+	
 	// Add a small label for the graph name.
-  chartOmzet.append("text")
+ svg.append("text")
       .attr("class", "title")
       .attr("x", 10)
       .attr("y", -20)
