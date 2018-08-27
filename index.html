@@ -101,7 +101,17 @@ var tooltip = d3.select("body").append("div").attr("class", "toolTip");
       .attr("font-weight", "bold")
       .style("text-anchor", "start")
       .style("font-size", 12)
-      .text("Omzet (x miljard €)");  
+      .text("Omzet (x miljard €)");
+
+ svg.append("text")
+      .attr("class","footer")
+      .attr("x", 10)
+      .attr("y", 20)
+      .attr("font-weight", "bold")
+      .style("text-anchor", "start")
+      .style("font-size", 12)
+      .text("Omzet (x miljard €)");
+	
 });
 </script>
 </body>
