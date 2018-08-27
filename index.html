@@ -4,6 +4,7 @@
 <style> /* set the CSS */
 body { font: 12px Arial;}
 .bar { fill: steelblue; }
+
 .toolTip {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     position: absolute;
@@ -60,6 +61,9 @@ d3.csv("data.csv", function(error, data) {
   x.domain(data.map(function(d) { return d.jaar; }));
   y.domain([0, d3.max(data, function(d) { return d.eur; })]);
   
+// Define the div for the tooltip
+var tooltip = d3.select("body").append("div").attr("class", "toolTip");
+
 	// append the rectangles for the bar chart
   svg.selectAll(".bar")
       .data(data)
