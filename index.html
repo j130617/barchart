@@ -21,18 +21,16 @@ body { font: 12px Arial;}
     text-align: center;
 }
 
-	
-	/*opmaak legenda*/
+/*opmaak legenda*/
 .legend {
-    font-size: 10px;
-    /*font-weight: bold;*/
-    text-anchor: middle;
+  font-size: 10px;
+  /*font-weight: bold;*/
+  text-anchor: middle;
 }
-	
 </style>
 <body>
-	
-<!-- load the d3.js library -->    	
+
+<!-- load the d3.js library -->
 <script src="//d3js.org/d3.v4.min.js"></script>
 
 	<script>
@@ -47,7 +45,7 @@ var x = d3.scaleBand()
           .padding(0.1);
 var y = d3.scaleLinear()
           .range([height, 0]);
-          
+
 // append the svg object to the body of the page
 // append a 'group' element to 'svg'
 // moves the 'group' element to the top left margin
@@ -55,21 +53,21 @@ var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
-    .attr("transform", 
+    .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 	// get the data
 d3.csv("omzetdetailhandelcbs.csv", function(error, data) {
   if (error) throw error;
-	
+
   // format the data
   data.forEach(function(d) {
     d.eur = +d.eur;
   });
-  
+
 	// Scale the range of the data in the domains
   x.domain(data.map(function(d) { return d.jaar; }));
   y.domain([0, d3.max(data, function(d) { return d.eur; })]);
-  
+
 // Define the div for the tooltip
 var tooltip = d3.select("body").append("div").attr("class", "toolTip");
 
@@ -90,34 +88,40 @@ var tooltip = d3.select("body").append("div").attr("class", "toolTip");
               .html((d.jaar) + "<br>" + "€ " + (d.eur) + " miljard");
         })
     		.on("mouseout", function(d){ tooltip.style("display", "none");});
-  
+
 	// add the x Axis
   svg.append("g")
       .attr("class", "axis")
       .attr("transform", "translate(0," + height + ")")
       .call(d3.axisBottom(x));
-  
+
 	// add the y Axis
   svg.append("g")
       .attr("class", "axis")
       .call(d3.axisLeft(y));
-	
+
 	// Add a small label for the graph name.
  svg.append("text")
-      .attr("class", "title")
-      .attr("x", 10)
-      .attr("y", -20)
-      .attr("font-weight", "bold")
-      .style("text-anchor", "start")
-      .style("font-size", 12)
-      .text("Omzet (x miljard €)");
+      //.attr("class", "title")
+      .attr("transform", "rotate(-90)")
+      .attr("y", - 35)
+      .attr("x", 0 - (height / 2))
+      //.attr("x", 10)
+      //.attr("y", -20)
+      //.attr("font-weight", "bold")
+      //.style("text-anchor", "start")
+      .style("text-anchor", "middle")
+      .style("font-size", 13)
+      .text("x miljard euro");
 
- svg.append("text")
-       .attr("x", (legendSpace/2)+i*legendSpace)  // space legend
-       .attr("y", height + (margin.bottom/2)+ 15)
-       .attr("class", "legend")    // style the legend
-       .text("Omzet (x miljard €)");
-	
+  svg.append("text")
+      .attr("x", 280)  // space legend
+      .attr("y", height + 40)
+      .attr("class", "legend")    // style the legend
+      .style("text-anchor", "middle")
+      .style("font-size", 11)
+      .text("Bron: CBS/eigen berekening (*schatting op basis van groeipercentage 2017; **prognose op basis van groeiverwachting 2018)");
+
 });
 </script>
 </body>
