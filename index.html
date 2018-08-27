@@ -104,13 +104,10 @@ var tooltip = d3.select("body").append("div").attr("class", "toolTip");
       .text("Omzet (x miljard €)");
 
  svg.append("text")
-      .attr("class","footer")
-      .attr("x", 10)
-      .attr("y", 20)
-      .attr("font-weight", "bold")
-      .style("text-anchor", "start")
-      .style("font-size", 12)
-      .text("Omzet (x miljard €)");
+       .attr("x", (legendSpace/2)+i*legendSpace)  // space legend
+       .attr("y", height + (margin.bottom/2)+ 15)
+       .attr("class", "legend")    // style the legend
+       .text("Omzet (x miljard €)");
 	
 });
 </script>
