@@ -56,7 +56,7 @@ var svg = d3.select("body").append("svg")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 	// get the data
-d3.tsv("data.tsv", function(error, data) {
+d3.tsv("data.tsv", type, function(error, data) {
   if (error) throw error;
 
   // format the data
